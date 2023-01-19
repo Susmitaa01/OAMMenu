@@ -1,0 +1,215 @@
+<div class="container-fluid">
+    <nav class="navbar navbar-expand-md navbar-dark bg-success">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">College Portal</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <button
+            class="btn btn-outline-success"
+            data-bs-toggle="modal"
+            data-bs-target="#addCollege"
+            type="submit"
+          >
+            Add Colleges
+          </button>
+        </div>
+      </div>
+    </nav>
+  
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th scope="col">College ID</th>
+          <th scope="col">College Name</th>
+          <th scope="col">University ID</th>
+          <th scope="col">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let college of collegeList">
+          <td>{{ college.collegeRegId }}</td>
+          <td>{{ college.collegeName }}</td>
+          <td>{{ college.universityId }}</td>
+          <td>
+            <button
+              type="button"
+              class="btn btn-outline-primary me-2"
+              data-bs-toggle="modal"
+              data-bs-target="#editCollege"
+              (click)="editCollege(college)"
+            >
+              Edit
+            </button>
+            <button
+              type="button"
+              class="btn btn-outline-danger"
+              (click)="deleteCollege(college)"
+            >
+              Delete
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  
+    <!-- Add College modal -->
+    <div
+      class="modal fade"
+      id="addCollege"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Add new College</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <form [formGroup]="collegeDetail">
+              <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label"
+                  >collegeName
+                </label>
+                <input
+                  type="name"
+                  formControlName="name"
+                  class="form-control"
+                  id="name"
+                  aria-describedby="emailHelp"
+                />
+              </div>
+              <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label"
+                  >universityId</label
+                >
+                <input
+                  type="text"
+                  formControlName="eligibity"
+                  class="form-control"
+                  id="clgid"
+                  aria-describedby="emailHelp"
+                />
+              </div>
+              <div class="modal-footer">
+                <button
+                  type="button"
+                  class="btn btn-secondary"
+                  data-bs-dismiss="modal"
+                >
+                  Close
+                </button>
+                <button
+                  type="button"
+                  class="btn btn-primary"
+                  data-bs-dismiss="modal"
+                  (click)="addCollege()"
+                >
+                  Add College
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <!-- Edit College- modal -->
+    <div
+      class="modal fade"
+      id="editCourse"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">
+              Edit College details
+            </h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <form [formGroup]="collegeDetail">
+              <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label"
+                  >collegeName
+                </label>
+                <input
+                  type="text"
+                  formControlName="name"
+                  class="form-control"
+                  id="name"
+                  aria-describedby="emailHelp"
+                />
+              </div>
+              <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label"
+                  >
+                </label>
+                <input
+                  type="text"
+                  formControlName="eligibity"
+                  class="form-control"
+                  id="eligibity"
+                  aria-describedby="emailHelp"
+                />
+              </div>
+              <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label"
+                  >universityId
+                </label>
+                <input
+                  type="text"
+                  formControlName="collegeRegId"
+                  class="form-control"
+                  id="clgid"
+                  aria-describedby="emailHelp"
+                />
+              </div>
+              <div class="modal-footer">
+                <button
+                  type="button"
+                  class="btn btn-secondary"
+                  data-bs-dismiss="modal"
+                >
+                  Close
+                </button>
+                <button
+                  type="button"
+                  class="btn btn-outline-success"
+                  (click)="updateCollege()"
+                  data-bs-dismiss="modal"
+                >
+                  Update
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

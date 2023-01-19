@@ -1,0 +1,179 @@
+
+<div class="container-fluid">
+  <nav class="navbar navbar-expand-md navbar-dark bg-success" > 
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">University Portal</a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <button
+          class="btn btn-outline-success"
+          data-bs-toggle="modal"
+          data-bs-target="#addUniversity"
+          type="submit"
+        >
+          Add University
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col">University ID</th>
+        <th scope="col">University Name</th>
+        <th scope="col">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let university of universityList">
+        <td>{{ university.universityId }}</td>
+        <td>{{ university.name }}</td>
+        <td>
+          <button
+            type="button"
+            class="btn btn-outline-primary me-2"
+            data-bs-toggle="modal"
+            data-bs-target="#editUniversity"
+            (click)="editUniversity(university)"
+          >
+            Edit
+          </button>
+          <button
+            type="button"
+            class="btn btn-outline-danger"
+            (click)="deleteUniversity(university)"
+          >
+            Delete
+          </button>
+        </td>
+      </tr>
+    </tbody> 
+  </table>
+
+  <!-- Add University modal -->
+  <div
+    class="modal fade"
+    id="addUniversity"
+    tabindex="-1"
+    aria-labelledby="exampleModalLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Add new University</h5>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div class="modal-body">
+          <form [formGroup]="universityDetail">
+            <div class="mb-3">
+              <label for="exampleInputEmail1" class="form-label"
+                >UniversityName
+              </label>
+              <input
+                type="name"
+                formControlName="name"
+                class="form-control"
+                id="name"
+                aria-describedby="emailHelp"
+              />
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
+                Close
+              </button>
+              <button
+                type="button"
+                class="btn btn-primary"
+                data-bs-dismiss="modal"
+                (click)="addUniversity()"
+              >
+                Add University
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Edit University modal -->
+  <div
+    class="modal fade"
+    id="editUniversity"
+    tabindex="-1"
+    aria-labelledby="exampleModalLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">
+            Edit University details
+          </h5>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div class="modal-body">
+          <form [formGroup]="universityDetail">
+            <div class="mb-3">
+              <label for="exampleInputEmail1" class="form-label"
+                >UniversityName
+              </label>
+              <input
+                type="text"
+                formControlName="name"
+                class="form-control"
+                id="name"
+                aria-describedby="emailHelp"
+              />
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
+                Close
+              </button>
+              <button
+                type="button"
+                class="btn btn-outline-success"
+                (click)="updateUniversity()"
+                data-bs-dismiss="modal"
+              >
+                Update
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
